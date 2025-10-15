@@ -4,9 +4,10 @@ Interface simples inspirada na Netflix, desenvolvida apenas com **HTML e CSS**.
 
 ## Instruções
 
-1. Baixe e extraia o arquivo `.zip`.
-2. Abra o arquivo `index.html` em qualquer navegador (duplo clique).
-3. Visualize a interface simulando um aplicativo de streaming.
+1. Faça clone da aplicação em seu repositório local:
+   git clone https://github.com/AndreyBroker/TextFLIX.git
+3. Abra o arquivo `index.html` em qualquer navegador (duplo clique).
+4. Visualize a interface simulando um aplicativo de streaming.
 
 ---
 **Arquivos incluídos:**
