@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>TextFLIX — Interface (HTML + CSS)</title>
+  <style>
+    :root{
+      --bg:#0b0b0b;
+      --muted:#9ca3af;
+      --accent:#e50914;
+      --card-radius:8px;
+      --gap:16px;
+      --max-width:1200px;
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      background:linear-gradient(180deg,#071019 0%, #050505 60%);
+      color:#fff;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.35;
+    }
+    .container{
+      max-width:var(--max-width);
+      margin:0 auto;
+      padding:24px;
+    }
+    header{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+    }
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{
+      width:120px;height:40px;
+      display:block;
+      background:linear-gradient(90deg,#ff3a3a,#ff8a00);
+      color:#111;
+      font-weight:800;
+      font-size:20px;
+      display:flex;align-items:center;justify-content:center;
+      border-radius:6px;
+      letter-spacing:1px;
+      box-shadow:0 6px 24px rgba(0,0,0,.6);
+    }
+    nav{display:flex;gap:12px;align-items:center}
+    nav a{color:var(--muted);text-decoration:none;font-weight:600}
+    .actions{display:flex;gap:12px;align-items:center}
+    .search{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.03);padding:8px 12px;border-radius:999px;min-width:180px}
+    .profile{width:36px;height:36px;border-radius:50%;background:linear-gradient(180deg,#333,#111);display:flex;align-items:center;justify-content:center;color:var(--muted);font-weight:700}
+    .hero{
+      margin-top:18px;
+      position:relative;
+      border-radius:12px;
+      overflow:hidden;
+      background:linear-gradient(90deg, rgba(4,4,5,.6), rgba(4,4,5,.4)), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="800"><rect width="100%" height="100%" fill="%23030a0f"/><g font-family="Arial, Helvetica, sans-serif" font-size="80" fill="%23ffffff" opacity="0.06"><text x="60" y="140">TEXTFLIX</text><text x="60" y="260">FEATURE PREVIEW</text></g></svg>') center/cover no-repeat;
+      min-height:320px;
+      display:flex;
+      align-items:flex-end;
+      padding:28px;
+    }
+    .hero .meta{max-width:720px;}
+    .hero h1{font-size:32px;margin:0 0 8px}
+    .hero p{margin:0;color:var(--muted)}
+    .hero .cta{margin-top:16px;display:flex;gap:12px}
+    .btn{padding:12px 18px;border-radius:8px;font-weight:700;border:0;cursor:pointer}
+    .btn.play{background:var(--accent);color:#fff}
+    .btn.info{background:rgba(255,255,255,0.08);color:#fff}
+    section.row{margin-top:28px}
+    section.row h2{font-size:18px;margin:0 0 12px}
+    .row-cards{
+      display:grid;
+      grid-auto-flow:column;
+      grid-auto-columns:220px;
+      gap:12px;
+      overflow:auto;
+      padding-bottom:8px;
+    }
+    .card{
+      background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(0,0,0,0.15));
+      height:130px;border-radius:8px;position:relative;overflow:hidden;flex:0 0 auto;
+      transition:transform .22s ease, box-shadow .22s ease;
+      display:flex;align-items:flex-end;padding:10px;
+    }
+    .card:hover{transform:translateY(-8px) scale(1.04);box-shadow:0 14px 30px rgba(0,0,0,.6)}
+    .card .overlay{position:relative;z-index:2;display:flex;flex-direction:column}
+    .play-icon{width:36px;height:36px;border-radius:50%;background:rgba(0,0,0,0.5);display:flex;align-items:center;justify-content:center;margin-bottom:6px}
+    .play-icon svg{width:18px;height:18px;opacity:0.95}
+    .card::before{content:'';position:absolute;inset:0;background-size:cover;background-position:center;filter:brightness(.9);}
+    .p1::before{background-image:linear-gradient(180deg,#7b2ff7,#f107a3)}
+    .p2::before{background-image:linear-gradient(180deg,#0099ff,#00cc88)}
+    .p3::before{background-image:linear-gradient(180deg,#ff7a00,#ff3d3d)}
+    .p4::before{background-image:linear-gradient(180deg,#00aaff,#5b5bf0)}
+    .p5::before{background-image:linear-gradient(180deg,#ffd600,#ff7b00)}
+    .p6::before{background-image:linear-gradient(180deg,#00d2ff,#3a7bd5)}
+    .row-cards::-webkit-scrollbar{height:10px}
+    .row-cards::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.06);border-radius:10px}
+    @media (max-width:800px){
+      .hero{min-height:220px;padding:18px}
+      .logo{width:96px}
+      .row-cards{grid-auto-columns:160px}
+      .card{height:120px}
+    }
+    @media (max-width:480px){
+      header{flex-direction:column;align-items:flex-start;gap:16px}
+      .actions{width:100%;justify-content:space-between}
+      .search{min-width:120px}
+    }
+    footer{margin:36px 0;color:var(--muted);font-size:13px;text-align:center}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="brand">
+        <div class="logo">TEXTFLIX</div>
+        <nav>
+          <a href="#">Início</a>
+          <a href="#">Séries</a>
+          <a href="#">Filmes</a>
+          <a href="#">Minha lista</a>
+        </nav>
+      </div>
+      <div class="actions">
+        <div class="search">🔍 Buscar</div>
+        <div class="profile">T</div>
+      </div>
+    </header>
+
+    <main>
+      <div class="hero">
+        <div class="meta">
+          <h1>Confira agora — Temporada 1</h1>
+          <p>Uma interface de exemplo construída apenas com HTML e CSS, inspirada em apps de streaming.</p>
+          <div class="cta">
+            <button class="btn play">▶ Assistir</button>
+            <button class="btn info">ℹ Mais informações</button>
+          </div>
+        </div>
+      </div>
+
+      <section class="row">
+        <h2>Minha seleção</h2>
+        <div class="row-cards">
+          <div class="card p1"><div class="overlay"><div class="play-icon"><svg viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg"><path d="M8 5v14l11-7z"/></svg></div><div class="title">Série A</div><div class="sub">Temporada 1</div></div></div>
+          <div class="card p2"><div class="overlay"><div class="play-icon"><svg viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg"><path d="M8 5v14l11-7z"/></svg></div><div class="title">Filme B</div><div class="sub">2019 • 1h 42m</div></div></div>
+          <div class="card p3"><div class="overlay"><div class="play-icon"><svg viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg"><path d="M8 5v14l11-7z"/></svg></div><div class="title">Documentário C</div><div class="sub">Episódio 3</div></div></div>
+          <div class="card p4"><div class="overlay"><div class="play-icon"><svg viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg"><path d="M8 5v14l11-7z"/></svg></div><div class="title">Série D</div><div class="sub">Temporada 2</div></div></div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      Trabalho A distância — Interface HTML e CSS — TextFLIX
+    </footer>
+  </div>
+</body>
+</html>
